@@ -2,8 +2,10 @@
   'use strict';
 
   const DEFAULT_MAX = 5;
+  const DEFAULT_COLOR = '255,105,180';
   let enabled = true;
   let maxTrails = DEFAULT_MAX;
+  let color = DEFAULT_COLOR;
   let dots = []; // { x, y } 页面坐标
   let els = [];
 
@@ -30,8 +32,8 @@
         'border-radius:50%',
         'top:' + (dot.y - 6) + 'px',
         'left:' + (dot.x - 6) + 'px',
-        'background:rgba(255,105,180,' + (0.15 + 0.55 * age) + ')',
-        'box-shadow:0 0 ' + (4 + 8 * age) + 'px ' + (2 + 4 * age) + 'px rgba(255,80,160,' + (0.2 + 0.5 * age) + ')',
+        'background:rgba(' + color + ',' + (0.15 + 0.55 * age) + ')',
+        'box-shadow:0 0 ' + (4 + 8 * age) + 'px ' + (2 + 4 * age) + 'px rgba(' + color + ',' + (0.2 + 0.5 * age) + ')',
         'transition:opacity 0.3s',
       ].join(';');
       document.documentElement.appendChild(el);
@@ -91,15 +93,20 @@
       if (dots.length > maxTrails) { dots = dots.slice(-maxTrails); save(); }
       render();
     }
+    if (msg.type === 'setColor') {
+      color = msg.color;
+      render();
+    }
     if (msg.type === 'clear') { dots = []; clearDots(); save(); }
     if (msg.type === 'getState') {
       chrome.runtime.sendMessage({ type: 'state', enabled, max: maxTrails, count: dots.length });
     }
   });
 
-  chrome.storage.local.get({ ct_enabled: true, ct_max: DEFAULT_MAX }, (res) => {
+  chrome.storage.local.get({ ct_enabled: true, ct_max: DEFAULT_MAX, ct_color: DEFAULT_COLOR }, (res) => {
     enabled = res.ct_enabled;
     maxTrails = res.ct_max;
+    color = res.ct_color;
     if (enabled) load();
   });
 
