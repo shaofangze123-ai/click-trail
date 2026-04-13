@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Click Trail — 点击轨迹",
+  "version": "1.0.0",
+  "description": "在网页上留下点击轨迹高亮，帮你记住编辑到哪一行。支持渐变历史标记，跨页面保留。",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["trail.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}

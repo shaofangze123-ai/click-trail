@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 260px;
+      font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 16px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .header img { width: 24px; height: 24px; }
+    .header h1 { font-size: 15px; font-weight: 600; }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .row:last-child { border-bottom: none; }
+    .label { font-size: 13px; color: #aaa; }
+    .value { font-size: 13px; color: #fff; font-weight: 500; }
+
+    /* 开关 */
+    .switch {
+      position: relative;
+      width: 40px; height: 22px;
+      cursor: pointer;
+    }
+    .switch input { display: none; }
+    .slider {
+      position: absolute; inset: 0;
+      background: #333;
+      border-radius: 11px;
+      transition: background 0.3s;
+    }
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      left: 3px; top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .switch input:checked + .slider { background: #4d7cff; }
+    .switch input:checked + .slider::before { transform: translateX(18px); }
+
+    /* 数量选择 */
+    .num-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .num-btn {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .num-btn:hover { background: rgba(77,124,255,0.3); }
+    #max-display {
+      min-width: 20px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4d7cff;
+    }
+
+    /* 清除按钮 */
+    .clear-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,77,77,0.3);
+      background: rgba(255,77,77,0.08);
+      color: #ff6b6b;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .clear-btn:hover { background: rgba(255,77,77,0.2); }
+
+    .status {
+      text-align: center;
+      font-size: 11px;
+      color: #555;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="icons/icon48.png" alt="icon" />
+    <h1>Click Trail</h1>
+  </div>
+
+  <div class="row">
+    <span class="label">启用追踪</span>
+    <label class="switch">
+      <input type="checkbox" id="toggle" checked />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="row">
+    <span class="label">保留标记数</span>
+    <div class="num-control">
+      <button class="num-btn" id="dec">−</button>
+      <span id="max-display">5</span>
+      <button class="num-btn" id="inc">+</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="label">当前页标记</span>
+    <span class="value" id="count">0</span>
+  </div>
+
+  <button class="clear-btn" id="clear">清除当前页标记</button>
+  <div class="status">点击页面元素留下轨迹标记</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
