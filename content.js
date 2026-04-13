@@ -30,8 +30,8 @@
         'border-radius:50%',
         'top:' + (dot.y - 6) + 'px',
         'left:' + (dot.x - 6) + 'px',
-        'background:rgba(255,190,60,' + (0.15 + 0.55 * age) + ')',
-        'box-shadow:0 0 ' + (4 + 8 * age) + 'px ' + (2 + 4 * age) + 'px rgba(255,180,40,' + (0.2 + 0.5 * age) + ')',
+        'background:rgba(255,105,180,' + (0.15 + 0.55 * age) + ')',
+        'box-shadow:0 0 ' + (4 + 8 * age) + 'px ' + (2 + 4 * age) + 'px rgba(255,80,160,' + (0.2 + 0.5 * age) + ')',
         'transition:opacity 0.3s',
       ].join(';');
       document.documentElement.appendChild(el);
