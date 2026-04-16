@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "在网页上留下点击轨迹高亮，帮你记住编辑到哪一行。支持渐变历史标记，跨页面保留。",
   "permissions": ["storage", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

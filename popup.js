@@ -125,5 +125,6 @@ incBtn.addEventListener('click', () => updateMax(1));
 // 清除
 clearBtn.addEventListener('click', () => {
   sendToTab({ type: 'clear' });
+  chrome.runtime.sendMessage({ type: 'CT_CLEAR_CLICKS' }); // Also send to background to clear storage
   countDisplay.textContent = '0';
 });
