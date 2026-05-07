@@ -62,6 +62,11 @@ click-trail/
 - 支持 iframe 嵌套页面
 - 支持 SPA 单页应用
 
+## 贡献者
+
+- **shaofangze123-ai** - 核心开发与最初实现
+- **Gemini CLI** - AI 研发助手（跨框架同步机制与 Bug 修复）
+
 ## 许可证
 
 [MIT](LICENSE)
